@@ -16,7 +16,7 @@ public class Floor1WallGeneration : MonoBehaviour
 
     IEnumerator SpawnWalls()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(2f);
 
         WallArray[0] = Resources.Load("silo_wall_1_model_obj") as GameObject;
         WallArray[1] = Resources.Load("silo_wall_2_model_obj") as GameObject;

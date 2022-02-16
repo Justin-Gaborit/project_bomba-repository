@@ -29,6 +29,7 @@ public class RoomGenerationManager : MonoBehaviour
 
 
 
+
     void Start()
     {
         Current_Room_Spawn_Step = 4;
@@ -75,6 +76,15 @@ public class RoomGenerationManager : MonoBehaviour
         RoomSpawn2 = GameObject.Find("Room_Spawn_2");
         RoomSpawn1 = GameObject.Find("Room_Spawn_1");
 
+
+        //Reload the scene if any one room fails to spawn
+        //(This is a very dirty but simple way to make sure the player doesnt encounter 
+        // room generation bugs)
+
+
+
+
+
         //Room 1 Spawn Location
         Vector3 Room1SpawnLocation = new Vector3();
         Room1SpawnLocation = RoomSpawn1.transform.position;
@@ -97,8 +107,6 @@ public class RoomGenerationManager : MonoBehaviour
             Current_Room_Spawn_Step -= 1;
         }
 
-        //RandomValue1 = Random.Range(0, 3);
-
         if (Current_Room_Spawn_Step == -1)
         {
             Instantiate(RoomArray[RandomValue1], Room2SpawnLocation, RoomSpawn2.transform.rotation);
@@ -110,10 +118,11 @@ public class RoomGenerationManager : MonoBehaviour
             RandomValue2 = Random.Range(0, 3);
             if (RandomValue2 == RandomValue1)
             {
-                while (RandomValue2 == RandomValue1)
-                {
-                    RandomValue2 = Random.Range(0, 3);
-                }
+                RandomValue2 = Random.Range(0, 3);
+                //while (RandomValue2 == RandomValue1)
+                //{
+                //    RandomValue2 = Random.Range(0, 3);
+                //}
             }
 
             if (RandomValue2 != RandomValue1)
@@ -126,24 +135,44 @@ public class RoomGenerationManager : MonoBehaviour
         if (Current_Room_Spawn_Step == -3)
         {
             RandomValue3 = Random.Range(0, 3);
-            if (RandomValue3 == RandomValue1 || RandomValue3 == RandomValue2)
+            Current_Room_Spawn_Step -= 1;
+        }
+
+        if (Current_Room_Spawn_Step == -4)
+        {
+            if (RandomValue3 == RandomValue1)
             {
-                while (RandomValue3 == RandomValue1 || RandomValue3 == RandomValue2)
-                {
-                    RandomValue2 = Random.Range(0, 3);
-                }
+                RandomValue3 = Random.Range(0, 3);
             }
 
-            if (RandomValue3 != RandomValue1 || RandomValue3 != RandomValue2)
+            if (RandomValue3 == RandomValue2)
+            {
+                RandomValue3 = Random.Range(0, 3);
+            }
+
+            if (RandomValue3 != RandomValue1 && RandomValue3 != RandomValue2)
             {
                 Instantiate(RoomArray[RandomValue3], Room4SpawnLocation, RoomSpawn4.transform.rotation);
                 Current_Room_Spawn_Step -= 1;
+                //gameObject.SetActive(false);
+            }
+
+            //Bugcase #1
+            if (Current_Room_Spawn_Step == -5)
+            {
+                if (RandomValue1 == 1 && RandomValue2 == 0 && RandomValue3 == 0)
+                {
+                    Debug.Log("Bug Case #1 Executed");
+                    Current_Room_Spawn_Step = -1;
+                }
+
+                //Bugcase #2
+                if (RandomValue1 == 0 && RandomValue2 == 0 && RandomValue3 == 0)
+                {
+                    Debug.Log("Bug Case #2 Executed");
+                    Current_Room_Spawn_Step = -1;
+                }
             }
         }
-
-        //if (Current_Room_Spawn_Step == -4)
-        //{
-        //    gameObject.SetActive(false);
-        //}
     }
 }
