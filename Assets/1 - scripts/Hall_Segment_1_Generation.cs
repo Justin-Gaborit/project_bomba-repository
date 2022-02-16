@@ -28,4 +28,6 @@ public class Hall_Segment_1_Generation : MonoBehaviour
 
         Debug.Log("wall instantiated");
     }
+
+
 }

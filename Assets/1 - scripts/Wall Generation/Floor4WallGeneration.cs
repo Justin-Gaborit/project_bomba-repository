@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallGeneration : MonoBehaviour
+public class Floor4WallGeneration : MonoBehaviour
 {
     public GameObject[] WallArray;
     public GameObject WallSpawnLocation;
@@ -16,7 +16,7 @@ public class WallGeneration : MonoBehaviour
 
     IEnumerator SpawnWalls()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1.5f);
 
         WallArray[0] = Resources.Load("silo_wall_1_model_obj") as GameObject;
         WallArray[1] = Resources.Load("silo_wall_2_model_obj") as GameObject;
