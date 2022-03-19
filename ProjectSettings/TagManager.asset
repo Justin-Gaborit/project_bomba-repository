@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Game Manager
+  - InteractiveObject
+  - GasMaskController
+  - ItemName
+  - InspectPoint
+  - ExaminePoint
   layers:
   - Default
   - TransparentFX
@@ -12,12 +16,12 @@ TagManager:
   - 
   - Water
   - UI
-  - groundMask
-  - Testing Layer
   - 
   - 
-  - 
-  - 
+  - PostProcessing
+  - Interact
+  - ExamineLayer
+  - InspectPointMask
   - 
   - 
   - 
