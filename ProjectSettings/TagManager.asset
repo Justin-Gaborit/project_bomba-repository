@@ -9,6 +9,8 @@ TagManager:
   - ItemName
   - InspectPoint
   - ExaminePoint
+  - LeverController
+  - Game Manager
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Groundmask
   - 
   - PostProcessing
   - Interact
@@ -41,7 +43,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Editor Invisible Layer
   m_SortingLayers:
   - name: Default
     uniqueID: 0
