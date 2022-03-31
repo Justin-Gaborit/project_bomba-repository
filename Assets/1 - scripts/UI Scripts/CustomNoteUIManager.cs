@@ -5,31 +5,29 @@ using UnityEngine.Events;
 
 public class CustomNoteUIManager : MonoBehaviour
 {
-    private bool Note_1_Open;
+    private bool Note_Open;
 
-    [Header("Open Note 1")]
-    [SerializeField] private UnityEvent OpenNote = null;
-
-    [Header("Close Note 1")]
-    [SerializeField] private UnityEvent CloseNote = null;
+    [Header("Note 1")]
+    [SerializeField] private UnityEvent OpenNote_1 = null;
+    [SerializeField] private UnityEvent CloseNote_1 = null;
 
     void Start()
     {
-        Note_1_Open = false;
+        Note_Open = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OpenNote.Invoke();
-            Note_1_Open = true;
+            OpenNote_1.Invoke();
+            Note_Open = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Note_1_Open == true)
+        if (Input.GetKeyUp(KeyCode.Alpha1) && Note_Open == true)
         {
-            CloseNote.Invoke();
-            Note_1_Open = false;
+            CloseNote_1.Invoke();
+            Note_Open = false;
         }
     }
 }
